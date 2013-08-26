@@ -416,6 +416,8 @@ var Reveal = (function(){
 				backgroundTransition: slide.getAttribute( 'data-background-transition' )
 			};
 
+			console.log(data.background);
+
 			var element = document.createElement( 'div' );
 			element.className = 'slide-background';
 
