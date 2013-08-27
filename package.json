@@ -1,6 +1,6 @@
 {
-  "name": "HootSuite Presentation Deck",
-  "version": "1.0",
+  "name": "reveal-HootDeck",
+  "version": "1.0.0",
   "description": "Deck absed on reveal.js - The HTML Presentation Framework",
   "homepage": "http://gitlab.hootsuitemedia.com/steve.mynett/hootsuite-presentation-template",
   "subdomain": "revealjs",
