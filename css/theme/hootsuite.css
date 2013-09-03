@@ -20,10 +20,17 @@
   .reveal pre code {
     font-size: 1em !important;
     max-height: none !important; }
+.reveal h1 {
+  font-size: 3em;
+  line-height: 120%; }
 .reveal p {
   line-height: 1.4em !important; }
+.reveal li {
+  margin-bottom: 0.5em; }
 .reveal .pause-overlay {
   background-color: #003366 !important; }
+.reveal section img {
+  border: none !important; }
 
 .reverse .slide-background.present {
   background: #003366;
@@ -53,7 +60,7 @@ body {
 
 .reveal {
   font-family: Helvetica, Arial, sans-serif;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 200;
   letter-spacing: -0.02em;
   color: #666666; }

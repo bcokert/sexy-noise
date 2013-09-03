@@ -39,7 +39,7 @@ $banda: 'banda-regular-normal', 'Trebuchet MS', Trebuchet, sans-serif;
 
 $backgroundColor: white;
 $mainFont: Helvetica, Arial, sans-serif;
-$mainFontSize: 24px;
+$mainFontSize: 32px;
 $mainColor: #666;
 $headingFont: $banda;	// used for all hX's
 $headingColor: #036;
@@ -72,12 +72,24 @@ $linkColor: $brandColor;
 		}
 	}
 
+	h1 {
+		font-size: 3em;
+		line-height: 120%;
+	}
+
 	p {
 		line-height: 1.4em!important;
 	}
 
+	li {
+		margin-bottom: 0.5em;
+	}
 	.pause-overlay {
 		background-color: $brandColor!important;
+	}
+
+	section img {
+		border: none!important;
 	}
 }
 
