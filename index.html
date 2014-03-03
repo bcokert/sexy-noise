@@ -1,78 +1,288 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
-		<title>A HootSuite Presentation</title>
-		<meta name="description" content="A Presentation given by a HootSuite dev.">
-		<meta name="apple-mobile-web-app-capable" content="yes" />
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<head>
+  <meta charset="utf-8">
+  <title>A HootSuite Presentation</title>
+  <meta name="description" content="A Presentation given by a HootSuite dev.">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<link rel="stylesheet" href="css/reveal.min.css">
-		<link rel="stylesheet" href="css/theme/hootsuite.css" id="theme">
-		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+  <link rel="stylesheet" href="css/reveal.min.css">
+  <link rel="stylesheet" href="css/theme/hootsuite.css" id="theme">
+  <!-- For syntax highlighting -->
+  <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
-		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
-		</script>
+  <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+  <script>
+    document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+  </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
-	</head>
-	<body>
-		<div class="reveal">
-			<!-- Any section element inside of this container is displayed as a slide -->
-			<div class="slides">
-				<section data-state="reverse">
-					<h1>HootSuite Presentation Deck</h1>
-					<h3>Code > Powerpoint</h3>
-					<h3>@yourname</h3>
-				</section>
-				<section>
-					<h2>Sample Content</h2>
-					<p>Sample Content Goes Here</p>
-					<aside class="notes">
-						Oh hey, these are some notes. They'll be hidden in your presentation, but you can see them if you open the speaker notes window (hit 's' on your keyboard).
-					</aside>
-				</section>
-				<section data-state="reverse">
-					<h1>Thank You!</h1>
-					<h3>@yourname</h3>
-					<h3>your.name@hootsuite.com</h3>
-				</section>
-			</div>
-		</div>
+  <!--[if lt IE 9]>
+  <script src="lib/js/html5shiv.js"></script>
+  <![endif]-->
+</head>
+<body>
+<div class="reveal">
+  <!-- Any section element inside of this container is displayed as a slide -->
+  <div class="slides">
+    <section data-state="reverse">
+      <h1>CasperJs at Hootsuite</h1>
+      <h3>Functional Testing in CasperJs</h3>
+      <h3>@BrandonOkert - brandon.okert@hootsuite.com</h3>
+      <h3>@adrian_delisle - adrian.delisle@hootsuite.com</h3>
+    </section>
+    <section>
+      <h2>Before we get started</h2>
+      <p>CasperJs Documentation - References along the bottom of slides</p>
+      <a target="_blank" href="https://confluence.hootsuitemedia.com/display/TESTPORT/CasperJs+Home">https://confluence.hootsuitemedia.com/display/TESTPORT/CasperJs+Home</a>
+    </section>
+    <section>
+      <h3>Introduction to CasperJs</h3>
+      <h4>Running Tests</h4>
+      <h4>The Framework</h4>
+      <h4>Example Test</h4>
+      <h4>Final Words</h4>
+    </section>
+    <section>
+      <h2>Introduction to CasperJs</h2>
+      <img src="img/1-1.gif" alt="introduction" style="width:100%;height:auto">
+    </section>
+    <section>
+      <h2>What is CasperJs</h2>
+      <p>Node-based test runner</p>
+      <p>Used for Functional Tests</p>
+      <p>Wraps a headless browser, PhantomJs</p>
+      <p>Integrated into build pipeline</p>
+    </section>
+    <section>
+      <h2>Pros And Cons</h2>
+      <p>Pros - Fast, Javascript, Mature</p>
+      <p>Cons - Headless, Browser Support</p>
+    </section>
+    <section>
+      <h4>Introduction to CasperJs</h4>
+      <h3>Running Tests</h3>
+      <h4>The Framework</h4>
+      <h4>Example Test</h4>
+      <h4>Final Words</h4>
+    </section>
+    <section>
+      <h2>Setting Up</h2>
+      <pre><code class="bash" data-trim>
+&gt; cd ~/projects
+&gt; git clone git git@gitlab.hootsuitemedia.com:web/dashboard-test-automation.git
+      </code></pre>
+      <p>Install casperjs</p>
+      <pre><code class="bash" data-trim>
+&gt; brew install casperjs --devel
+&gt; brew uninstall phantomjs --force
+&gt; cd /usr/local
+&gt; git log --oneline -S'1.9.7' -- Library/Formula/phantomjs.rb
+&gt; cd /usr/local/Library
+&gt; git checkout &lt;hash of 1.9.7&gt;
+&gt; brew install phantomjs
+      </code></pre>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Setting+Up+Casper</h6>
+      </div>
+    </section>
+    <section>
+      <h2>Running a Single Test</h2>
+      <pre><code class="bash" data-trim>
+&gt; cd ~/projects/dashboard-test-automation/casperjs/web
+      </code></pre>
+      <pre><code class="bash" data-trim>
+&gt; casperjs test \
+--verbose \
+--ignore-ssl-errors=yes \
+--web-security=false \
+--ssl-protocol=any \
+--timeout=10000 \
+--includes=framework/web-globals.js,framework/framework.js \
+&lt;test-name&gt;
+      </code></pre>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Running+Tests</h6>
+      </div>
+    </section>
+    <section>
+      <h2>Running Mutliple Tests</h2>
+      <pre><code class="bash" data-trim>
+&gt; vim ~/projects/dashboard-test-automation/Gruntfile.js
+      </code></pre>
+      <pre><code class="javascript" data-trim>
+'&lt;user/group name&gt;': [
+    {file: '&lt;test name&gt;', xunit: '&lt;report name&gt;'},
+    {file: '&lt;test name&gt;', xunit: '&lt;report name&gt;'}
+],
+      </code></pre>
+      <pre><code class="bash" data-trim>
+&gt; grunt testWeb
+&gt; grunt testMobile
+      </code></pre>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Adding+New+Tests</h6>
+      </div>
+    </section>
+    <section>
+      <h2>^ Seeing Test Results in CI</h2>
+      <p>Every merge to master triggers the tests in Gruntfile.js</p>
+      <p>Monitoring status - Dash4Deploy</p>
+      <p>Can dig deeper by clicking on test status (Success/Failure)</p>
+      <a target="_blank" href="http://dash4deploy.hootsuitemedia.com:3000">http://dash4deploy.hootsuitemedia.com:3000</a>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Tests+in+Continuous+Integration</h6>
+      </div>
+    </section>
+    <section>
+      <h2>^ Re-Running tests in CI</h2>
+      <br/>
+      <p>Two ways...</p>
+      <span><a target="_blank" href="http://dash4deploy.hootsuitemedia.com:3000">Dash4Deploy - http://dash4deploy.hootsuitemedia.com:3000</a></span>
+      <br/>
+      <span><a target="_blank" href="http://ci.hootsuitemedia.com/job/Dashboard-Test-Automation">Jenkins - http://ci.hootsuitemedia.com/job/Dashboard-Test-Automation</a></span>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Tests+in+Continuous+Integration</h6>
+      </div>
+    </section>
+    <section>
+      <h4>Introduction to CasperJs</h4>
+      <h4>Running Tests</h4>
+      <h3>The Framework</h3>
+      <h4>Example Test</h4>
+      <h4>Final Words</h4>
+    </section>
+    <section>
+      <h2>The Framework</h2>
+      <br/>
+      <p>Common features and utilties</p>
+      <p>Manage tests, logging, reporting, etc.</p>
+      <p>Made up of namespaces</p>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Framework+Overview</h6>
+      </div>
+    </section>
+    <section>
+      <h2>The Framework</h2>
+      <br/>
+      <p>Namespaces</p>
+      <ul>
+          <li>hsc</li>
+          <li>log</li>
+          <li>util</li>
+          <li>base</li>
+          <li>routine</li>
+          <li>test</li>
+          <li>setup</li>
+      </ul>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Framework+Overview</h6>
+      </div>
+    </section>
+    <section>
+      <h2>The Framework</h2>
+      <br/>
+      <p>The Casper Queue</p>
+        <pre><code class="bash" data-trim>
+casper.then(function() {
+  casper.click(".login-btn");
+  casper.waitUntilVisible(".login-success");
+  casper.sendKeys(".compose-box", "Hi!");
+  casper.click(".send-message-btn");
+  casper.test.assertSelectorHasText(".message-0", "Hi!");
+});
+      </code></pre>
+      <div style="position:absolute; top:100%">
+        <hr>
+        <h6>https://confluence.hootsuitemedia.com/display/TESTPORT/Casper+Internals</h6>
+      </div>
+    </section>
+    <section>
+      <h4>Introduction to CasperJs</h4>
+      <h4>Running Tests</h4>
+      <h4>The Framework</h4>
+      <h3>Example Test</h3>
+      <h4>Final Words</h4>
+    </section>
+    <section>
+      <h2>Writing a Test</h2>
+      <br/>
+      <p>We're going to work through the example test together</p>
+      <div><a target="_blank" href="https://confluence.hootsuitemedia.com/display/TESTPORT/Example+Test">https://confluence.hootsuitemedia.com/display/TESTPORT/Example+Test</a></div>
+    </section>
+    <section>
+      <h4>Introduction to CasperJs</h4>
+      <h4>Running Tests</h4>
+      <h4>The Framework</h4>
+      <h4>Example Test</h4>
+      <h3>Final Words</h3>
+    </section>
+    <section>
+      <h2>Recap...</h2>
+      <p>CasperJs tests run on every merge</p>
+      <p>You can find detailed documentation on Confluence - Help keep it up to date!</p>
+      <p>The framework makes life easier - add to it!</p>
+      <p>Need to keep performance and reliability in mind when writing tests</p>
+    </section>
+    <section>
+      <h2>Caveats</h2>
+      <p>Don't run too many tests in parallel - can overload Staging and fail CI tests</p>
+      <p>After Code Review + Merge, watch Dash4deploy for failures</p>
+      <p>All tests should be independent - all queues MUST be independent</p>
+    </section>
+    <section>
+      <h2>Need Help?</h2>
+      <p>Framework - Brandon Okert</p>
+      <p>Infrastructure - Brandon Okert, Adrian DeLisle</p>
+      <p>Web Tests - CoreUX Team, Adrian DeLisle</p>
+      <p>Mobile Web Tests - Mobile-Web Team, Adam Arsenault</p>
+      <p>Documentation - <a target="_blank" href="https://confluence.hootsuitemedia.com/display/TESTPORT/CasperJs+Home">https://confluence.hootsuitemedia.com/display/TESTPORT/CasperJs+Home</a></p>
+      <p>CasperJs API - <a target="_blank" href="http://casperjs.readthedocs.org/en/latest/modules/index.html">http://casperjs.readthedocs.org/en/latest/modules/index.html</a></p>
+      <p>CasperJs Test API - <a target="_blank" href="http://casperjs.readthedocs.org/en/latest/modules/tester.html">http://casperjs.readthedocs.org/en/latest/modules/tester.html</a></p>
+    </section>
+    <section data-state="reverse">
+      <h1>Thank You!</h1>
+      <h3>@BrandonOkert - brandon.okert@hootsuite.com</h3>
+      <h3>@adrian_delisle - adrian.delisle@hootsuite.com</h3>
+    </section>
+  </div>
+</div>
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.min.js"></script>
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.min.js"></script>
 
-		<script>
+<script>
 
-			// Full list of configuration options available here:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+  // Full list of configuration options available here:
+  // https://github.com/hakimel/reveal.js#configuration
+  Reveal.initialize({
+    controls: true,
+    progress: true,
+    history: true,
+    center: true,
 
-				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-				transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+    theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+    transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
 
-				// Optional libraries used to extend on reveal.js
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
-				]
-			});
-		</script>
-	</body>
+    // Optional libraries used to extend on reveal.js
+    dependencies: [
+      { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+      { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+      { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+      { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+      { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+    ]
+  });
+</script>
+</body>
 </html>
