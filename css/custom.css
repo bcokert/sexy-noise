@@ -1,0 +1,41 @@
+.subsection {
+    position: relative;
+    display: inline-block;
+    width: 49%;
+    overflow: hidden;
+}
+
+img {
+    height: auto;
+}
+
+img.-full {
+    width: 100%;
+}
+
+img.-full-margin {
+    width: 90%;
+}
+
+img.-most {
+    width: 75%;
+}
+
+img.-half {
+    width: 50%;
+}
+
+img.-small {
+    width: 25%;
+}
+
+.-overlayable {
+    position: relative;
+}
+
+.-overlay {
+    position: absolute;
+    top: 150px;
+    left: 10px;
+    width: 100%;
+}
